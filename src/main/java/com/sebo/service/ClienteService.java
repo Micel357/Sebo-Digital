@@ -1,6 +1,7 @@
 package com.sebo.service;
 
 import com.sebo.models.Cliente;
+import com.sebo.persistence.ClienteDuplicadoException;
 import com.sebo.persistence.ClienteRepository;
 import com.sebo.persistence.InMemoryClienteRepository;
 
@@ -48,7 +49,11 @@ public class ClienteService {
             cliente.setTelefone("81900000000");
         }
 
-        clientes.inserir(cpfNormalizado, cliente);
+        try {
+            clientes.inserir(cpfNormalizado, cliente);
+        } catch (ClienteDuplicadoException exception) {
+            throw new Exception("CPF já existe", exception);
+        }
         return true;
     }
 
@@ -64,6 +69,10 @@ public class ClienteService {
     public boolean atualizarCliente(String cpf, Cliente clienteAtualizado) throws Exception {
         if (cpf == null || cpf.isEmpty()) {
             throw new Exception("CPF não pode ser vazio");
+        }
+
+        if (clienteAtualizado == null) {
+            throw new Exception("Cliente atualizado não pode ser nulo");
         }
 
         String cpfNormalizado = ValidadorCPF.normalizarCPF(cpf);
