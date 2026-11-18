@@ -7,6 +7,7 @@ Notable changes are recorded here. Git tags and GitHub Releases should point to 
 ### Added
 - A Portuguese Cucumber scenario for the existing customer registration flow.
 - A focused purchase workflow test suite.
+- A minimal GitHub Actions workflow that runs Maven verification for pull requests.
 
 ### Changed
 - Migrated automated tests from JUnit 4 to JUnit 5.
