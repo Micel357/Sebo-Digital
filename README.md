@@ -15,6 +15,7 @@ A suíte cobre regras existentes dos serviços com JUnit 5 e Mockito. Há també
 - JUnit 5
 - Mockito
 - Cucumber
+- GitHub Actions para validar a suíte em pull requests
 
 ## Como executar
 
@@ -43,4 +44,4 @@ mvn clean test
 └── README.md
 ```
 
-Esta é a linha de base da modernização v1.1.0. A evolução para Spring Boot, SQL Server, Open Library, Testcontainers, WireMock, CI e cobertura será feita em etapas posteriores e vinculada a Issues e PRs.
+Esta é a linha de base da modernização v1.1.0. Um workflow mínimo do GitHub Actions executa `mvn clean verify` em pull requests. A evolução para Spring Boot, SQL Server, Open Library, Testcontainers, WireMock, Postman/Newman, JaCoCo e etapas mais amplas de CI será planejada em Issues e PRs próprios.
