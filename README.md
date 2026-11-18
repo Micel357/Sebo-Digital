@@ -1,50 +1,47 @@
-# Sebo Digital — Testes Automatizados
+# Sebo Digital
 
-Estou resgatando alguns projetos antigos da faculdade para testar minhas capacidades e colocar em prática o que fui aprendendo durante o curso de Análise e Desenvolvimento de Sistemas. Este é um deles: um projeto de testes automatizados para um sistema de sebo digital.
+Estou resgatando alguns projetos antigos da faculdade para testar minhas capacidades e colocar em prática o que fui aprendendo durante o curso de Análise e Desenvolvimento de Sistemas. Este é um sistema acadêmico de sebo, em modernização gradual.
 
-## Sobre o projeto
+## Estado atual
 
-Os testes exercitam as regras de negócio de clientes, funcionários, livros e compras, incluindo validações e cenários de integração entre serviços.
+O código contém modelos e serviços Java para clientes, funcionários, livros e compras. Os serviços guardam os dados em memória. Ainda não há API REST, frontend, banco de dados ou integração com a Open Library.
+
+A suíte cobre regras existentes dos serviços com JUnit 5 e Mockito. Há também um cenário Cucumber de cadastro de cliente. Cenários de segurança, pagamentos externos, backup, carga e persistência só serão adicionados quando houver implementação real para exercitar.
 
 ## Tecnologias
 
 - Java 11
 - Maven
-- JUnit 4
+- JUnit 5
 - Mockito
-- Hamcrest
+- Cucumber
+- GitHub Actions para validar a suíte em pull requests
 
 ## Como executar
 
-É necessário ter Java 11 ou superior e Maven instalado.
+Requisitos: JDK 11 ou superior e Maven.
 
 ```bash
-mvn clean compile
-mvn test
-```
-
-Para executar somente uma classe de testes:
-
-```bash
-mvn test -Dtest=ClienteServiceTest
+mvn clean test
 ```
 
 ## Estrutura
 
 ```text
 .
-├── config/                 # Configurações e exemplos do projeto
-├── data/                   # Dados locais usados durante o desenvolvimento
-├── docs/                   # Documentação complementar
+├── config/
+├── data/
+├── docs/
 ├── src/
 │   ├── main/java/com/sebo/
-│   │   ├── models/         # Cliente, funcionário, livro e compra
-│   │   └── service/        # Regras de negócio e validações
-│   └── test/java/com/sebo/
-│       └── service/        # Testes unitários e de integração
-├── tests/                  # Orientações sobre a suíte de testes
+│   │   ├── models/
+│   │   └── service/
+│   └── test/
+│       ├── java/com/sebo/
+│       └── resources/features/
+├── tests/
 ├── pom.xml
 └── README.md
 ```
 
-Os testes ficam em src/test/java, no padrão esperado pelo Maven. Arquivos gerados durante a compilação ficam fora do controle de versão.
+Esta é a linha de base da modernização v1.1.0. Um workflow mínimo do GitHub Actions executa `mvn clean verify` em pull requests. A evolução para Spring Boot, SQL Server, Open Library, Testcontainers, WireMock, Postman/Newman, JaCoCo e etapas mais amplas de CI será planejada em Issues e PRs próprios.
