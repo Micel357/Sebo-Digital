@@ -1,11 +1,22 @@
 package com.sebo.service;
 
 import com.sebo.models.Cliente;
-import java.util.HashMap;
-import java.util.Map;
+import com.sebo.persistence.ClienteDuplicadoException;
+import com.sebo.persistence.ClienteRepository;
+import com.sebo.persistence.InMemoryClienteRepository;
+
+import java.util.Objects;
 
 public class ClienteService {
-    private Map<String, Cliente> clientes = new HashMap<>();
+    private final ClienteRepository clientes;
+
+    public ClienteService() {
+        this(new InMemoryClienteRepository());
+    }
+
+    public ClienteService(ClienteRepository clientes) {
+        this.clientes = Objects.requireNonNull(clientes, "O repositório de clientes é obrigatório");
+    }
 
     public boolean cadastrarCliente(Cliente cliente) throws Exception {
         if (cliente == null) {
@@ -30,16 +41,19 @@ public class ClienteService {
 
         String cpfNormalizado = ValidadorCPF.normalizarCPF(cliente.getCpf());
 
-        if (clientes.containsKey(cpfNormalizado)) {
+        if (clientes.existePorCpf(cpfNormalizado)) {
             throw new Exception("CPF já existe");
         }
 
-        // Define telefone padrão se não informado
         if (cliente.getTelefone() == null || cliente.getTelefone().isEmpty()) {
             cliente.setTelefone("81900000000");
         }
 
-        clientes.put(cpfNormalizado, cliente);
+        try {
+            clientes.inserir(cpfNormalizado, cliente);
+        } catch (ClienteDuplicadoException exception) {
+            throw new Exception("CPF já existe", exception);
+        }
         return true;
     }
 
@@ -49,7 +63,7 @@ public class ClienteService {
         }
 
         String cpfNormalizado = ValidadorCPF.normalizarCPF(cpf);
-        return clientes.get(cpfNormalizado);
+        return clientes.buscarPorCpf(cpfNormalizado);
     }
 
     public boolean atualizarCliente(String cpf, Cliente clienteAtualizado) throws Exception {
@@ -57,13 +71,17 @@ public class ClienteService {
             throw new Exception("CPF não pode ser vazio");
         }
 
+        if (clienteAtualizado == null) {
+            throw new Exception("Cliente atualizado não pode ser nulo");
+        }
+
         String cpfNormalizado = ValidadorCPF.normalizarCPF(cpf);
 
-        if (!clientes.containsKey(cpfNormalizado)) {
+        if (!clientes.existePorCpf(cpfNormalizado)) {
             throw new Exception("Cliente não encontrado");
         }
 
-        Cliente cliente = clientes.get(cpfNormalizado);
+        Cliente cliente = clientes.buscarPorCpf(cpfNormalizado);
         if (clienteAtualizado.getNome() != null) {
             cliente.setNome(clienteAtualizado.getNome());
         }
@@ -72,6 +90,10 @@ public class ClienteService {
         }
         if (clienteAtualizado.getTelefone() != null) {
             cliente.setTelefone(clienteAtualizado.getTelefone());
+        }
+
+        if (!clientes.atualizar(cpfNormalizado, cliente)) {
+            throw new Exception("Cliente não encontrado");
         }
 
         return true;
@@ -84,19 +106,14 @@ public class ClienteService {
 
         String cpfNormalizado = ValidadorCPF.normalizarCPF(cpf);
 
-        if (!clientes.containsKey(cpfNormalizado)) {
+        if (!clientes.existePorCpf(cpfNormalizado) || !clientes.remover(cpfNormalizado)) {
             throw new Exception("Cliente não encontrado");
         }
 
-        clientes.remove(cpfNormalizado);
         return true;
     }
 
     public int getTotalClientes() {
-        return clientes.size();
-    }
-
-    public void limpar() {
-        clientes.clear();
+        return clientes.contar();
     }
 }
