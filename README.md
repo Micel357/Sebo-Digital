@@ -79,4 +79,4 @@ Sem a propriedade `sebo.sqlserver.integration=true`, o teste de conexão é igno
 └── CHANGELOG.md
 ```
 
-A versão publicada é `1.1.0`; o histórico de mudanças está no [CHANGELOG](CHANGELOG.md). A tag `v1.1.0` e a GitHub Release apontam para o commit validado desta versão.
+A versão preparada é `1.1.0`; o histórico de mudanças está no [CHANGELOG](CHANGELOG.md). Ao publicar a tag `v1.1.0` e a GitHub Release, use o commit validado desta versão.
