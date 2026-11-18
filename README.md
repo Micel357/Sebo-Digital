@@ -1,22 +1,50 @@
-# Projeto Integrador — JDBC e SQLite
+# Sebo Digital — Testes Automatizados
 
-Repositório reservado para um projeto Java com JDBC e SQLite.
+Estou resgatando alguns projetos antigos da faculdade para testar minhas capacidades e colocar em prática o que fui aprendendo durante o curso de Análise e Desenvolvimento de Sistemas. Este é um deles: um projeto de testes automatizados para um sistema de sebo digital.
 
-**Estado atual:** a estrutura de código e testes está preparada, mas ainda não há classes Java, testes executáveis, arquivo de build ou banco de dados versionados.
+## Sobre o projeto
+
+Os testes exercitam as regras de negócio de clientes, funcionários, livros e compras, incluindo validações e cenários de integração entre serviços.
+
+## Tecnologias
+
+- Java 11
+- Maven
+- JUnit 4
+- Mockito
+- Hamcrest
+
+## Como executar
+
+É necessário ter Java 11 ou superior e Maven instalado.
+
+```bash
+mvn clean compile
+mvn test
+```
+
+Para executar somente uma classe de testes:
+
+```bash
+mvn test -Dtest=ClienteServiceTest
+```
 
 ## Estrutura
 
 ```text
 .
+├── config/                 # Configurações e exemplos do projeto
+├── data/                   # Dados locais usados durante o desenvolvimento
+├── docs/                   # Documentação complementar
 ├── src/
-│   ├── main/java/       # Classes Java futuras
-│   └── test/java/       # Testes Java futuros
-├── tests/               # Orientação para testes
-├── docs/                # Decisões e documentação técnica
-├── config/              # Exemplos de configuração futuros
-├── data/                # Orientação para dados locais SQLite
-├── .gitignore
+│   ├── main/java/com/sebo/
+│   │   ├── models/         # Cliente, funcionário, livro e compra
+│   │   └── service/        # Regras de negócio e validações
+│   └── test/java/com/sebo/
+│       └── service/        # Testes unitários e de integração
+├── tests/                  # Orientações sobre a suíte de testes
+├── pom.xml
 └── README.md
 ```
 
-Quando a implementação começar, mantenha o arquivo de dependências na raiz conforme a ferramenta escolhida, como `pom.xml` para Maven ou `build.gradle` para Gradle. Não versione bancos `.db` gerados localmente.
+Os testes ficam em src/test/java, no padrão esperado pelo Maven. Arquivos gerados durante a compilação ficam fora do controle de versão.

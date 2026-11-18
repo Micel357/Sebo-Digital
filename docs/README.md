@@ -1,3 +1,3 @@
 # Documentação
 
-Registre aqui requisitos, decisões de modelagem JDBC e esquema SQLite quando forem definidos.
+Registre aqui anotações, decisões técnicas e documentação complementar do projeto Sebo Digital.

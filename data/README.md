@@ -1,3 +1,3 @@
 # Dados locais
 
-O banco SQLite gerado durante a execução pode ficar nesta pasta. Arquivos `.db`, `.sqlite` e `.sqlite3` são ignorados pelo Git; versionar o esquema em código ou migrações quando a aplicação existir.
+Use esta pasta para dados de apoio necessários durante o desenvolvimento. Não versione dados pessoais ou arquivos gerados localmente.

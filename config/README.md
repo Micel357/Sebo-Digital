@@ -1,3 +1,3 @@
 # Configuração
 
-Adicione apenas exemplos de configuração. Credenciais e caminhos pessoais devem ficar em arquivos locais ignorados pelo Git.
+Guarde aqui exemplos de configuração do projeto. Dados pessoais e credenciais devem permanecer em arquivos locais, fora do Git.
