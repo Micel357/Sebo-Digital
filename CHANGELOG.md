@@ -1,8 +1,8 @@
 # Changelog
 
-Mudanças notáveis do Sebo Digital são registradas aqui. A versão Maven permanece como snapshot até a validação e publicação de uma release.
+Mudanças notáveis do Sebo Digital são registradas aqui seguindo versionamento semântico. O histórico acadêmico da v1.0.0 permanece preservado.
 
-## Unreleased — próxima versão 1.1.0
+## [1.1.0] - 2026-11-18
 
 ### Added
 - Cenário Cucumber em português para o cadastro de clientes existente.
@@ -22,7 +22,7 @@ Mudanças notáveis do Sebo Digital são registradas aqui. A versão Maven perma
 ### Removed
 - Cenários de placeholder para persistência, segurança, backup, carga, pagamentos externos e notificações sem implementação correspondente.
 
-## v1.0.0 — academic baseline
+## [1.0.0] - baseline acadêmica
 
 - Snapshot acadêmico preservado no commit `4373a4cf45b355706a6090a8abf877e299d39771`.
 - Inclui serviços em memória e a suíte original em JUnit 4. O relatório Surefire arquivado registra 1 falha e 2 erros.
