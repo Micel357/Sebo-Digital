@@ -79,4 +79,4 @@ Sem a propriedade `sebo.sqlserver.integration=true`, o teste de conexão é igno
 └── CHANGELOG.md
 ```
 
-A versão Maven permanece em `1.1.0-SNAPSHOT) enquanto a entrega é validada. A tag e a release `v1.1.0` serão preparadas depois da validação do PR.
+A versão Maven permanece em `1.1.0-SNAPSHOT` enquanto a entrega é validada. A tag e a release `v1.1.0` serão preparadas depois da validação do PR.
