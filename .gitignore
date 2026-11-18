@@ -1,10 +1,34 @@
+# Java and Maven
 target/
+*.class
+out/
+
+# Build leftovers
 build/
 .gradle/
+
+# IDEs
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.factorypath
+
+# Local databases
 *.db
 *.sqlite
 *.sqlite3
+
+# Environment variables and secrets
 .env
+.env.*
+!.env.example
+
+# Logs
 *.log
-.idea/
-*.iml
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
