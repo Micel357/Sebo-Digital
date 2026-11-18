@@ -1,23 +1,23 @@
 package com.sebo.service;
 
 import com.sebo.models.Livro;
-import com.sebo.models.Funcionario;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static com.sebo.testing.JUnit5Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class LivroServiceTest {
     private LivroService livroService;
     private FuncionarioService funcionarioService;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        funcionarioService = new FuncionarioService();
+        funcionarioService = mock(FuncionarioService.class);
+        when(funcionarioService.existeFuncionario(1)).thenReturn(true);
+        when(funcionarioService.existeFuncionario(9999)).thenReturn(false);
         livroService = new LivroService(funcionarioService);
-        
-        // Cadastra um funcionário para os testes
-        Funcionario func = new Funcionario("Kaio Castro", "12345678901", "Estoquista");
-        funcionarioService.adicionarFuncionario(func);
     }
 
     // Cenário 13: Cadastro de novo livro com sucesso

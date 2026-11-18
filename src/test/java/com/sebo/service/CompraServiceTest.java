@@ -4,10 +4,11 @@ import com.sebo.models.Cliente;
 import com.sebo.models.Livro;
 import com.sebo.models.Compra;
 import com.sebo.models.Funcionario;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
-import static org.junit.Assert.*;
+import static com.sebo.testing.JUnit5Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class CompraServiceTest {
     private CompraService compraService;
@@ -15,7 +16,7 @@ public class CompraServiceTest {
     private LivroService livroService;
     private FuncionarioService funcionarioService;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         clienteService = new ClienteService();
         funcionarioService = new FuncionarioService();

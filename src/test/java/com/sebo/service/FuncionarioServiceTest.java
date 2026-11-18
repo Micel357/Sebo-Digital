@@ -1,14 +1,15 @@
 package com.sebo.service;
 
 import com.sebo.models.Funcionario;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static com.sebo.testing.JUnit5Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class FuncionarioServiceTest {
     private FuncionarioService funcionarioService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         funcionarioService = new FuncionarioService();
     }
